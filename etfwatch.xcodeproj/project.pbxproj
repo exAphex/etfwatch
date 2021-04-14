@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05A8A4552614D4A900CDC007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8A4542614D4A900CDC007 /* AppDelegate.swift */; };
+		05A8A4592614D4AA00CDC007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A8A4582614D4AA00CDC007 /* Assets.xcassets */; };
+		05A8A45C2614D4AA00CDC007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A8A45B2614D4AA00CDC007 /* Preview Assets.xcassets */; };
+		05A8A45F2614D4AA00CDC007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A8A45D2614D4AA00CDC007 /* Main.storyboard */; };
+		05A8A4692615390300CDC007 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8A4682615390300CDC007 /* Model.swift */; };
+		05D162532619FFCD004832E2 /* HTTPUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D162522619FFCD004832E2 /* HTTPUtil.swift */; };
+		05D16256261A01C6004832E2 /* PortfolioUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D16255261A01C6004832E2 /* PortfolioUtil.swift */; };
+		05D16259261A9DE0004832E2 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D16258261A9DE0004832E2 /* PortfolioViewController.swift */; };
+		05D1625D261CC3CD004832E2 /* PortfolioElementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1625C261CC3CD004832E2 /* PortfolioElementController.swift */; };
+		05D16260261E0008004832E2 /* PortfolioElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1625F261E0008004832E2 /* PortfolioElementViewController.swift */; };
+		05D1626A2623600B004832E2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D162692623600B004832E2 /* Error.swift */; };
+		05D1626D26272133004832E2 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1626C26272133004832E2 /* Preferences.swift */; };
+		05D16274262737CA004832E2 /* ChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D16273262737CA004832E2 /* ChartMarker.swift */; };
+		7BE1EAF32ED9B83C62C7EAA1 /* Pods_etfwatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		05A8A4512614D4A900CDC007 /* etfwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = etfwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A8A4542614D4A900CDC007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05A8A4582614D4AA00CDC007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05A8A45B2614D4AA00CDC007 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		05A8A45E2614D4AA00CDC007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05A8A4602614D4AA00CDC007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05A8A4612614D4AA00CDC007 /* etfwatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = etfwatch.entitlements; sourceTree = "<group>"; };
+		05A8A4682615390300CDC007 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		05D162522619FFCD004832E2 /* HTTPUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUtil.swift; sourceTree = "<group>"; };
+		05D16255261A01C6004832E2 /* PortfolioUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUtil.swift; sourceTree = "<group>"; };
+		05D16258261A9DE0004832E2 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		05D1625C261CC3CD004832E2 /* PortfolioElementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioElementController.swift; sourceTree = "<group>"; };
+		05D1625F261E0008004832E2 /* PortfolioElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioElementViewController.swift; sourceTree = "<group>"; };
+		05D162692623600B004832E2 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		05D1626C26272133004832E2 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		05D16273262737CA004832E2 /* ChartMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarker.swift; sourceTree = "<group>"; };
+		119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_etfwatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CD6A819AEA5090C8C2E0F13 /* Pods-etfwatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.release.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.release.xcconfig"; sourceTree = "<group>"; };
+		3E7A326D2D5841141CCCCA72 /* Pods-etfwatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.debug.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05A8A44E2614D4A900CDC007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BE1EAF32ED9B83C62C7EAA1 /* Pods_etfwatch.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05A8A4482614D4A900CDC007 = {
+			isa = PBXGroup;
+			children = (
+				05A8A4532614D4A900CDC007 /* etfwatch */,
+				05A8A4522614D4A900CDC007 /* Products */,
+				F7831730226823F3BE278DAE /* Pods */,
+				365C456C3EF44E56CF7C296A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		05A8A4522614D4A900CDC007 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05A8A4512614D4A900CDC007 /* etfwatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05A8A4532614D4A900CDC007 /* etfwatch */ = {
+			isa = PBXGroup;
+			children = (
+				05A8A4542614D4A900CDC007 /* AppDelegate.swift */,
+				05D1626C26272133004832E2 /* Preferences.swift */,
+				05D16258261A9DE0004832E2 /* PortfolioViewController.swift */,
+				05D16273262737CA004832E2 /* ChartMarker.swift */,
+				05D1625F261E0008004832E2 /* PortfolioElementViewController.swift */,
+				05D1625C261CC3CD004832E2 /* PortfolioElementController.swift */,
+				05D16255261A01C6004832E2 /* PortfolioUtil.swift */,
+				05D162522619FFCD004832E2 /* HTTPUtil.swift */,
+				05A8A4582614D4AA00CDC007 /* Assets.xcassets */,
+				05A8A45D2614D4AA00CDC007 /* Main.storyboard */,
+				05A8A4602614D4AA00CDC007 /* Info.plist */,
+				05A8A4612614D4AA00CDC007 /* etfwatch.entitlements */,
+				05A8A45A2614D4AA00CDC007 /* Preview Content */,
+				05A8A4682615390300CDC007 /* Model.swift */,
+				05D162692623600B004832E2 /* Error.swift */,
+			);
+			path = etfwatch;
+			sourceTree = "<group>";
+		};
+		05A8A45A2614D4AA00CDC007 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				05A8A45B2614D4AA00CDC007 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		365C456C3EF44E56CF7C296A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7831730226823F3BE278DAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E7A326D2D5841141CCCCA72 /* Pods-etfwatch.debug.xcconfig */,
+				3CD6A819AEA5090C8C2E0F13 /* Pods-etfwatch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05A8A4502614D4A900CDC007 /* etfwatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05A8A4642614D4AA00CDC007 /* Build configuration list for PBXNativeTarget "etfwatch" */;
+			buildPhases = (
+				AE52AC9EE2FC81C98C5B66B5 /* [CP] Check Pods Manifest.lock */,
+				05A8A44D2614D4A900CDC007 /* Sources */,
+				05A8A44E2614D4A900CDC007 /* Frameworks */,
+				05A8A44F2614D4A900CDC007 /* Resources */,
+				8889A277FE843B135706CC77 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = etfwatch;
+			productName = etfwatch;
+			productReference = 05A8A4512614D4A900CDC007 /* etfwatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05A8A4492614D4A900CDC007 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					05A8A4502614D4A900CDC007 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 05A8A44C2614D4A900CDC007 /* Build configuration list for PBXProject "etfwatch" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05A8A4482614D4A900CDC007;
+			productRefGroup = 05A8A4522614D4A900CDC007 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05A8A4502614D4A900CDC007 /* etfwatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05A8A44F2614D4A900CDC007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05A8A45F2614D4AA00CDC007 /* Main.storyboard in Resources */,
+				05A8A45C2614D4AA00CDC007 /* Preview Assets.xcassets in Resources */,
+				05A8A4592614D4AA00CDC007 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8889A277FE843B135706CC77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-etfwatch/Pods-etfwatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-etfwatch/Pods-etfwatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-etfwatch/Pods-etfwatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE52AC9EE2FC81C98C5B66B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-etfwatch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05A8A44D2614D4A900CDC007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05A8A4692615390300CDC007 /* Model.swift in Sources */,
+				05D16274262737CA004832E2 /* ChartMarker.swift in Sources */,
+				05D16259261A9DE0004832E2 /* PortfolioViewController.swift in Sources */,
+				05D1626D26272133004832E2 /* Preferences.swift in Sources */,
+				05D1625D261CC3CD004832E2 /* PortfolioElementController.swift in Sources */,
+				05A8A4552614D4A900CDC007 /* AppDelegate.swift in Sources */,
+				05D162532619FFCD004832E2 /* HTTPUtil.swift in Sources */,
+				05D16260261E0008004832E2 /* PortfolioElementViewController.swift in Sources */,
+				05D1626A2623600B004832E2 /* Error.swift in Sources */,
+				05D16256261A01C6004832E2 /* PortfolioUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		05A8A45D2614D4AA00CDC007 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A8A45E2614D4AA00CDC007 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05A8A4622614D4AA00CDC007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		05A8A4632614D4AA00CDC007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		05A8A4652614D4AA00CDC007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E7A326D2D5841141CCCCA72 /* Pods-etfwatch.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = etfwatch/etfwatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"etfwatch/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = etfwatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tekin.etfwatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05A8A4662614D4AA00CDC007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CD6A819AEA5090C8C2E0F13 /* Pods-etfwatch.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = etfwatch/etfwatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"etfwatch/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = etfwatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tekin.etfwatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05A8A44C2614D4A900CDC007 /* Build configuration list for PBXProject "etfwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05A8A4622614D4AA00CDC007 /* Debug */,
+				05A8A4632614D4AA00CDC007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05A8A4642614D4AA00CDC007 /* Build configuration list for PBXNativeTarget "etfwatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05A8A4652614D4AA00CDC007 /* Debug */,
+				05A8A4662614D4AA00CDC007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05A8A4492614D4A900CDC007 /* Project object */;
+}
