@@ -82,9 +82,9 @@
 		05A8A4532614D4A900CDC007 /* etfwatch */ = {
 			isa = PBXGroup;
 			children = (
+				05D1629E26288DBF004832E2 /* Models */,
 				05D16294262865D4004832E2 /* Portfolio */,
 				05D1627E26285D96004832E2 /* Preferences */,
-				05D1627B26285B10004832E2 /* Models */,
 				05D1627A26285B00004832E2 /* Utils */,
 				05D1627726285ABA004832E2 /* PortfolioElement */,
 				05A8A4542614D4A900CDC007 /* AppDelegate.swift */,
@@ -125,15 +125,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		05D1627B26285B10004832E2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				05D162692623600B004832E2 /* Error.swift */,
-				05A8A4682615390300CDC007 /* Model.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		05D1627E26285D96004832E2 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +140,15 @@
 				05D16258261A9DE0004832E2 /* PortfolioViewController.swift */,
 			);
 			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		05D1629E26288DBF004832E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05A8A4682615390300CDC007 /* Model.swift */,
+				05D162692623600B004832E2 /* Error.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		365C456C3EF44E56CF7C296A /* Frameworks */ = {

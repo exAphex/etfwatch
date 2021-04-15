@@ -26,6 +26,15 @@ class PortfolioElementController: NSWindowController, NSWindowDelegate {
         let controller = self.window!.contentViewController as! PortfolioElementViewController
         controller.clearAll()
     }
+    
+    func modifyElement(sender: Any?, elem : PortfolioElement) {
+        self.window?.center()
+        self.window?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+        
+        let controller = self.window!.contentViewController as! PortfolioElementViewController
+        controller.modifyElement(elem: elem)
+    }
 
 }
 

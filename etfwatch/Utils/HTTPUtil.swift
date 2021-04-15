@@ -15,7 +15,15 @@ class HTTPUtil {
         var result : HistoricDataStruct? = nil
         
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-            guard let data = data else { return }
+            if let error = error {
+                print(error) // this will print -1009
+                semaphore.signal()
+                return
+            }
+            guard let data = data else {
+                semaphore.signal()
+                return
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 result = try jsonDecoder.decode(HistoricDataStruct.self, from: data)

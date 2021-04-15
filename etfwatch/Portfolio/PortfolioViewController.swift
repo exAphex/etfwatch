@@ -61,6 +61,20 @@ class PortfolioViewController: NSViewController {
         preferencesWindowController.showWindow(self)
     }
     
+    @IBAction func onEditPortfolioElement(_ sender: Any) {
+        let selectedRow = tableView.selectedRow
+        if (selectedRow < 0) {
+            return
+        }
+        
+        let pElement = portfolio[tableView.selectedRow]
+        if (pElement.instrumentId < 0) {
+            return
+        }
+        
+        portfolioElementController.modifyElement(sender: sender, elem: pElement)
+    }
+    
     @IBAction func onShowGraph(_ sender: Any) {
         let pElement = portfolio[tableView.clickedRow]
         if (pElement.instrumentId < 0) {

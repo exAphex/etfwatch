@@ -9,6 +9,7 @@ import Foundation
 
 enum PreferenceError: Error {
     case alreadyInPortfolio
+    case notFoundInPortfolio
     case genericError(cause: String)
 }
 
@@ -44,6 +45,17 @@ class Preferences {
         
         portfolioElements.append(elem)
         
+        portfolioElements = try savePortfolio(elements: portfolioElements)
+    }
+    
+    func modifyPortfolioFromPreferences(elem : PortfolioElement) throws {
+        var portfolioElements = loadPortfolioFromPreferences()
+        for i in portfolioElements.indices {
+            if (portfolioElements[i].instrumentId == elem.instrumentId) {
+                portfolioElements[i].count = elem.count
+                portfolioElements[i].name = elem.name
+            }
+        }
         portfolioElements = try savePortfolio(elements: portfolioElements)
     }
     

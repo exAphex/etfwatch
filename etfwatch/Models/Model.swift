@@ -22,9 +22,9 @@ struct Position: Codable {
 }
 
 struct PortfolioElement: Codable {
-    let name: String?
-    let instrumentId: Int
-    let count: Float64
+    var name: String?
+    var instrumentId: Int
+    var count: Float64
     var resultData : ResultStruct = ResultStruct(latestPrice: 0, oldestPrice: 0)
     var intraDay = [[Float64]]()
 }

@@ -27,6 +27,8 @@ class PortfolioUtil {
                         let tempElem = PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice))
                         resultArr.append(tempElem)
                     }
+                } else {
+                    resultArr.append(PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice)))
                 }
             } catch {
                 resultArr.append(PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice)))

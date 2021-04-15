@@ -19,6 +19,7 @@ class PortfolioElementViewController: NSViewController {
     var delegate : MainAppDelegate?
     var preferences = Preferences()
     var window : PortfolioElementController?
+    var isEdit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +31,44 @@ class PortfolioElementViewController: NSViewController {
     }
     
     func disableUIElements() {
+        self.isEdit = false
         self.currentInstrumentId = -1
+        
+        self.txtISIN.isEnabled = true
+        self.txtISIN.stringValue = ""
+        
         self.txtAmount.isEnabled = false
         self.txtAmount.stringValue = "0.0"
+        
         self.btnSave.isEnabled = false
+        self.searchButton.isEnabled = true
+        
         self.txtName.stringValue = ""
         self.txtName.isEnabled = false
+        
+        self.txtPrice.isEnabled = false
         self.txtPrice.stringValue = ""
+        
+    }
+    
+    func modifyElement(elem : PortfolioElement) {
+        self.isEdit = true
+        self.currentInstrumentId = elem.instrumentId
+        
+        self.txtISIN.isEnabled = false
         self.txtISIN.stringValue = ""
+        
+        self.btnSave.isEnabled = true
+        self.searchButton.isEnabled = false
+        
+        self.txtPrice.isEnabled = false
+        self.txtPrice.stringValue = PortfolioUtil.getFormattedEuroPrice(price: elem.resultData.latestPrice)
+        
+        self.txtAmount.isEnabled = true
+        self.txtAmount.stringValue = String(elem.count)
+        
+        self.txtName.isEnabled = true
+        self.txtName.stringValue = elem.name!
     }
     
     @IBAction func onSave(_ sender: Any) {
@@ -49,7 +80,11 @@ class PortfolioElementViewController: NSViewController {
         
         if let amount = Float64(strAmount) {
             do {
-                try preferences.addPortfolioFromPreferences(elem: PortfolioElement(name : strName, instrumentId : currentInstrumentId, count : amount))
+                if (isEdit) {
+                    try preferences.modifyPortfolioFromPreferences(elem: PortfolioElement(name : strName, instrumentId : currentInstrumentId, count : amount))
+                } else {
+                    try preferences.addPortfolioFromPreferences(elem: PortfolioElement(name : strName, instrumentId : currentInstrumentId, count : amount))
+                }
                 delegate?.preferencesDidUpdate()
                 self.window?.close()
             } catch PreferenceError.alreadyInPortfolio {
