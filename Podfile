@@ -7,5 +7,4 @@ target 'etfwatch' do
 
   # Pods for etfwatch
     pod "Charts"
-        pod "ChartsRealm"
 end
