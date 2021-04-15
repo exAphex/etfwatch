@@ -679,7 +679,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-318" y="-81"/>
+            <point key="canvasLocation" x="-518" y="78"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="xl7-eD-irM">
@@ -705,7 +705,7 @@
                 </windowController>
                 <customObject id="8PN-FN-Spr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-875" y="108"/>
+            <point key="canvasLocation" x="-1057" y="202"/>
         </scene>
         <!--Portfolio Element View Controller-->
         <scene sceneID="IeQ-FQ-cml">
@@ -822,7 +822,7 @@
                 </viewController>
                 <customObject id="pqM-rO-Y4B" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-790.5" y="539.5"/>
+            <point key="canvasLocation" x="-1099" y="680"/>
         </scene>
         <!--Portfolio View Controller-->
         <scene sceneID="SaC-yt-VuG">
@@ -839,6 +839,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onQuitApp:" target="dtl-cE-KM0" id="sPF-Po-Bnj"/>
+                                </connections>
                             </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cca-bz-twj">
                                 <rect key="frame" x="20" y="208" width="626" height="220"/>
@@ -1046,17 +1049,108 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onShowPreferences:" target="dtl-cE-KM0" id="s5l-08-ipS"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="btnPreferences" destination="X0g-oK-DvR" id="dt1-4M-JOk"/>
                         <outlet property="chtChart" destination="4uO-2y-P43" id="xjy-k3-fyc"/>
                         <outlet property="tableView" destination="GLE-Md-455" id="4ZM-oD-RKv"/>
                     </connections>
                 </viewController>
                 <customObject id="tXH-kC-fAY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="241"/>
+            <point key="canvasLocation" x="64" y="291"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="xiV-tF-okT">
+            <objects>
+                <windowController storyboardIdentifier="PreferencesWindowController" id="lFX-5x-cGf" customClass="PreferencesWindowController" customModule="etfwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="8Yt-vB-rmk">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="473" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+                        <view key="contentView" id="ycO-iy-tft">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="lFX-5x-cGf" id="fpk-tK-sKJ"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="31z-AR-I4m" kind="relationship" relationship="window.shadowedContentViewController" id="LK1-iO-Ogl"/>
+                    </connections>
+                </windowController>
+                <customObject id="PO8-BJ-hr6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575" y="784"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="1AO-6L-vsp">
+            <objects>
+                <viewController id="31z-AR-I4m" customClass="PreferencesViewController" customModule="etfwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="gAC-5X-rAh">
+                        <rect key="frame" x="0.0" y="0.0" width="265" height="100"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmF-5l-s0q">
+                                <rect key="frame" x="18" y="64" width="77" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Status Item:" id="b1H-f8-phI">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLY-nw-YNO">
+                                <rect key="frame" x="99" y="63" width="132" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show Percentage" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qh2-HD-2LX">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pressShowPercentage:" target="31z-AR-I4m" id="abk-JE-rtq"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPJ-gP-bfM">
+                                <rect key="frame" x="99" y="41" width="116" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show Net Gain" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oeK-wv-SGM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pressShowNetGain:" target="31z-AR-I4m" id="4d5-x1-pAu"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Sl-a2-18K">
+                                <rect key="frame" x="99" y="19" width="146" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show Icon Indicator" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tUV-Vj-SWM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pressShowIndicator:" target="31z-AR-I4m" id="Jes-85-URD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="chbShowIndicator" destination="8Sl-a2-18K" id="gIU-55-xJj"/>
+                        <outlet property="chbShowNetGain" destination="pPJ-gP-bfM" id="XaJ-Xv-HDc"/>
+                        <outlet property="chbShowPercentage" destination="WLY-nw-YNO" id="qml-lW-TcB"/>
+                    </connections>
+                </viewController>
+                <customObject id="Jdn-KI-mUw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="784"/>
         </scene>
     </scenes>
     <resources>

@@ -15,8 +15,16 @@ enum PreferenceError: Error {
 class Preferences {
     let userDefaults = UserDefaults.standard
     
+    func getBoolValue(key : String) -> Bool {
+        return userDefaults.bool(forKey: key)
+    }
+    
+    func setBoolValue(key: String, value : Bool) {
+        userDefaults.set(value, forKey: key)
+    }
+    
     func loadPortfolioFromPreferences() -> [PortfolioElement] {
-        if let data = UserDefaults.standard.object(forKey: "portfolioElements") as? Data {
+        if let data = userDefaults.object(forKey: "portfolioElements") as? Data {
             do {
                 return try JSONDecoder().decode([PortfolioElement].self, from: data)
             } catch {

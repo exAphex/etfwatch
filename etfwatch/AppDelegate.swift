@@ -82,11 +82,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, MainAppDelegate {
                 oldestTotalPrice += p.resultData.oldestPrice * p.count
             }
             let diffPercent : Float64 = ((latestTotalPrice > 0) ? ((1 - (oldestTotalPrice / latestTotalPrice)) * 100) : 0)
+            let diffPrice = (latestTotalPrice - oldestTotalPrice)
+            let strDiffPrice = (diffPrice < 0 ? "(-" + PortfolioUtil.getFormattedEuroPrice(price: (latestTotalPrice - oldestTotalPrice)) + ")" : "(+" + PortfolioUtil.getFormattedEuroPrice(price: diffPrice) + ")")
             let priceString = PortfolioUtil.getFormattedEuroPrice(price: latestTotalPrice)
             var percentString = String(format: "%.2f", diffPercent)
             percentString = (diffPercent < 0 ? "(" + percentString + "%)"  : "(+" + percentString + "%)")
             let statusString = (diffPercent < 0 ? "🔴" : "🟢")
-            button.title = priceString + " " + percentString + " " + statusString
+            
+            var strFinalTitle = priceString
+            if (preferences.getBoolValue(key: "showPercentInTitle")) {
+                strFinalTitle += " " + percentString
+            }
+            if (preferences.getBoolValue(key: "showNetGainInTitle")) {
+                strFinalTitle += " " + strDiffPrice
+            }
+            if (preferences.getBoolValue(key: "showIndicatorInTitle")) {
+                strFinalTitle += " " + statusString
+            }
+            button.title = strFinalTitle
         }
     }
     

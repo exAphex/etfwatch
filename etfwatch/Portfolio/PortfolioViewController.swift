@@ -15,7 +15,9 @@ class PortfolioViewController: NSViewController {
     var delegate : MainAppDelegate?
     var preferences = Preferences()
     var portfolioElementController: PortfolioElementController!
+    var preferencesWindowController: PreferencesWindowController!
     @IBOutlet weak var chtChart: LineChartView!
+    @IBOutlet weak var btnPreferences: NSButton!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -27,15 +29,14 @@ class PortfolioViewController: NSViewController {
         tableView.dataSource = self
         
         portfolioElementController = createPortfolioElementWindow()
+        preferencesWindowController = createPreferencesWindow()
         
         resetSize()
     }
     
     func createPortfolioElementWindow() -> PortfolioElementController {
         let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-        //2.
         let identifier = NSStoryboard.SceneIdentifier("PortfolioElementController")
-        //3.
         guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? PortfolioElementController else {
           fatalError("Why cant i find PortfolioViewController? - Check Main.storyboard")
         }
@@ -43,6 +44,21 @@ class PortfolioViewController: NSViewController {
         controller.delegate = delegate
         controller.window = viewcontroller
         return viewcontroller
+    }
+    
+    func createPreferencesWindow() -> PreferencesWindowController {
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        let identifier = NSStoryboard.SceneIdentifier("PreferencesWindowController")
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? PreferencesWindowController else {
+          fatalError("Why cant i find PortfolioViewController? - Check Main.storyboard")
+        }
+        let controller = viewcontroller.window!.contentViewController as! PreferencesViewController
+        controller.delegate = delegate
+        return viewcontroller
+    }
+    
+    @IBAction func onShowPreferences(_ sender: Any) {
+        preferencesWindowController.showWindow(self)
     }
     
     @IBAction func onShowGraph(_ sender: Any) {
@@ -136,6 +152,9 @@ class PortfolioViewController: NSViewController {
         }
     }
     
+    @IBAction func onQuitApp(_ sender: Any) {
+        NSApplication.shared.terminate(self)
+    }
 }
 
 extension PortfolioViewController: IAxisValueFormatter {

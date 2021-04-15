@@ -20,6 +20,8 @@
 		05D1626A2623600B004832E2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D162692623600B004832E2 /* Error.swift */; };
 		05D1626D26272133004832E2 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1626C26272133004832E2 /* Preferences.swift */; };
 		05D16274262737CA004832E2 /* ChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D16273262737CA004832E2 /* ChartMarker.swift */; };
+		05D1628126285F53004832E2 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1628026285F53004832E2 /* PreferencesWindowController.swift */; };
+		05D1628C262861D8004832E2 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1628B262861D8004832E2 /* PreferencesViewController.swift */; };
 		7BE1EAF32ED9B83C62C7EAA1 /* Pods_etfwatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		05D162692623600B004832E2 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		05D1626C26272133004832E2 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		05D16273262737CA004832E2 /* ChartMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMarker.swift; sourceTree = "<group>"; };
+		05D1628026285F53004832E2 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		05D1628B262861D8004832E2 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_etfwatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD6A819AEA5090C8C2E0F13 /* Pods-etfwatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.release.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.release.xcconfig"; sourceTree = "<group>"; };
 		3E7A326D2D5841141CCCCA72 /* Pods-etfwatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.debug.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,21 +82,17 @@
 		05A8A4532614D4A900CDC007 /* etfwatch */ = {
 			isa = PBXGroup;
 			children = (
+				05D16294262865D4004832E2 /* Portfolio */,
+				05D1627E26285D96004832E2 /* Preferences */,
+				05D1627B26285B10004832E2 /* Models */,
+				05D1627A26285B00004832E2 /* Utils */,
+				05D1627726285ABA004832E2 /* PortfolioElement */,
 				05A8A4542614D4A900CDC007 /* AppDelegate.swift */,
-				05D1626C26272133004832E2 /* Preferences.swift */,
-				05D16258261A9DE0004832E2 /* PortfolioViewController.swift */,
-				05D16273262737CA004832E2 /* ChartMarker.swift */,
-				05D1625F261E0008004832E2 /* PortfolioElementViewController.swift */,
-				05D1625C261CC3CD004832E2 /* PortfolioElementController.swift */,
-				05D16255261A01C6004832E2 /* PortfolioUtil.swift */,
-				05D162522619FFCD004832E2 /* HTTPUtil.swift */,
 				05A8A4582614D4AA00CDC007 /* Assets.xcassets */,
 				05A8A45D2614D4AA00CDC007 /* Main.storyboard */,
 				05A8A4602614D4AA00CDC007 /* Info.plist */,
 				05A8A4612614D4AA00CDC007 /* etfwatch.entitlements */,
 				05A8A45A2614D4AA00CDC007 /* Preview Content */,
-				05A8A4682615390300CDC007 /* Model.swift */,
-				05D162692623600B004832E2 /* Error.swift */,
 			);
 			path = etfwatch;
 			sourceTree = "<group>";
@@ -103,6 +103,52 @@
 				05A8A45B2614D4AA00CDC007 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		05D1627726285ABA004832E2 /* PortfolioElement */ = {
+			isa = PBXGroup;
+			children = (
+				05D1625C261CC3CD004832E2 /* PortfolioElementController.swift */,
+				05D1625F261E0008004832E2 /* PortfolioElementViewController.swift */,
+			);
+			path = PortfolioElement;
+			sourceTree = "<group>";
+		};
+		05D1627A26285B00004832E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				05D1626C26272133004832E2 /* Preferences.swift */,
+				05D16273262737CA004832E2 /* ChartMarker.swift */,
+				05D162522619FFCD004832E2 /* HTTPUtil.swift */,
+				05D16255261A01C6004832E2 /* PortfolioUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		05D1627B26285B10004832E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05D162692623600B004832E2 /* Error.swift */,
+				05A8A4682615390300CDC007 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05D1627E26285D96004832E2 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				05D1628026285F53004832E2 /* PreferencesWindowController.swift */,
+				05D1628B262861D8004832E2 /* PreferencesViewController.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		05D16294262865D4004832E2 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				05D16258261A9DE0004832E2 /* PortfolioViewController.swift */,
+			);
+			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		365C456C3EF44E56CF7C296A /* Frameworks */ = {
@@ -237,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A8A4692615390300CDC007 /* Model.swift in Sources */,
+				05D1628126285F53004832E2 /* PreferencesWindowController.swift in Sources */,
 				05D16274262737CA004832E2 /* ChartMarker.swift in Sources */,
 				05D16259261A9DE0004832E2 /* PortfolioViewController.swift in Sources */,
 				05D1626D26272133004832E2 /* Preferences.swift in Sources */,
@@ -246,6 +293,7 @@
 				05D16260261E0008004832E2 /* PortfolioElementViewController.swift in Sources */,
 				05D1626A2623600B004832E2 /* Error.swift in Sources */,
 				05D16256261A01C6004832E2 /* PortfolioUtil.swift in Sources */,
+				05D1628C262861D8004832E2 /* PreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
