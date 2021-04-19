@@ -19,14 +19,17 @@ If you encounter following error message on startup of ETFwatch:
 Follow these steps:
 1. Click on "Show in Finder"
 2. Search for ETFwatch in the Applications Folder and rightclick -> "Open"
-![Add asset](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/unsignederror.png)
+
+![openinfinder](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/openinfinder.png)
 3. Click on "Open"
+
 ![openunisgned](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/openunsigned.png)
 
 ## Add assets
 1. Left-Click on the ETFwatch app in your status bar.
 2. Click on the "Add" Button
 3. You will see the following window:
+
 ![Add asset](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/addasset.png)
 4. Type in the ISIN of your asset and click on the "Search" button
 5. If the asset is found, ETFwatch will auto-complete the name and price.
