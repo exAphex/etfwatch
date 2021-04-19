@@ -9,7 +9,7 @@ import Cocoa
 import SwiftUI
 import UserNotifications
 
-let VERSION = "1.0"
+let VERSION = "1.1.0"
 
 protocol MainAppDelegate {
     func preferencesDidUpdate()
