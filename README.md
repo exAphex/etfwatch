@@ -14,9 +14,11 @@ etfwatch is a small portfolio ticker app for MacOS with live data feed from L&S 
 ## Add assets
 1. Left-Click on the ETFwatch app in your status bar.
 2. Click on the "Add" Button
-3. Type in the ISIN of your asset and click on the "Search" button
-4. If the asset is found, ETFwatch will auto-complete the name and price.
-5. Type in the amount and save.
+3. You will see the following window:
+![Add asset](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/addasset.png)
+4. Type in the ISIN of your asset and click on the "Search" button
+5. If the asset is found, ETFwatch will auto-complete the name and price.
+6. Type in the amount and save.
 
 ## Modify asset
 1. Select the asset you want to modify.
