@@ -13,7 +13,8 @@ etfwatch is a small portfolio ticker app for MacOS with live data feed from L&S 
 
 ## Unsigned application error
 If you encounter following error message on startup of ETFwatch: 
-![Add asset](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/addasset.png)
+
+![unsignederror](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/unsignederror.png)
 
 Follow these steps:
 1. Click on "Show in Finder"
