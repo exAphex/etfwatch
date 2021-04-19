@@ -137,10 +137,14 @@ class PortfolioElementViewController: NSViewController {
                 }
                 return
             } else if (json.count > 1) {
-                disableUIElements()
+                DispatchQueue.main.async {
+                    self.disableUIElements()
+                }
                 showAlert(message: "Multiple elements found!", informativeText: "Please check given ISIN!")
             } else {
-                disableUIElements()
+                DispatchQueue.main.async {
+                    self.disableUIElements()
+                }
                 showAlert(message: "No element found!", informativeText: "Please check given ISIN!")
             }
         } catch {
