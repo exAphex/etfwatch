@@ -52,6 +52,7 @@ class PortfolioUtil {
         let dateFormatter = DateFormatter()
         let newValue = value / 1000
         dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: Date(timeIntervalSince1970: newValue))
     }
     

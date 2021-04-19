@@ -7,13 +7,16 @@
 
 import Cocoa
 import SwiftUI
+import UserNotifications
+
+let VERSION = "1.0"
 
 protocol MainAppDelegate {
     func preferencesDidUpdate()
 }
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate, MainAppDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate, MainAppDelegate {
 
     var popover: NSPopover!
     var portfolioViewController: PortfolioViewController!
@@ -23,12 +26,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, MainAppDelegate {
     var preferences = Preferences()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        setupNotifications()
+        
         preparePopover()
         prepareStatusItem()
         
         let portfolio = preferences.loadPortfolioFromPreferences()
         setPortfolio(portfolioElements: portfolio)
         createTimer()
+        
+        checkUpdate()
     }
     
     func preparePopover() {
@@ -39,6 +46,36 @@ class AppDelegate: NSObject, NSApplicationDelegate, MainAppDelegate {
         popover.contentViewController = viewController
         self.popover = popover
         self.portfolioViewController = viewController
+    }
+    
+    func checkUpdate() {
+        let updater = Updater(version:VERSION)
+        updater.checkUpdate(callback:{(version) in
+            DispatchQueue.main.async {
+                Updater.notification(title:"New version available!", subtitle:"Version: " + version, tag:"")
+            }
+            
+        })
+    }
+    
+    func setupNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (permissionGranted, error) in
+                }
+
+        let etfWatchCategory = UNNotificationCategory(identifier: "etfwatchCategory", actions: [], intentIdentifiers: [], options: [])
+
+        UNUserNotificationCenter.current().setNotificationCategories([etfWatchCategory])
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let strURL = "https://github.com/exAphex/etfwatch/releases"
+        let url = URL(string: strURL)!
+        NSWorkspace.shared.open(url)
     }
     
     func prepareStatusItem() {
@@ -83,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MainAppDelegate {
             }
             let diffPercent : Float64 = ((latestTotalPrice > 0) ? ((1 - (oldestTotalPrice / latestTotalPrice)) * 100) : 0)
             let diffPrice = (latestTotalPrice - oldestTotalPrice)
-            let strDiffPrice = (diffPrice < 0 ? "(-" + PortfolioUtil.getFormattedEuroPrice(price: (latestTotalPrice - oldestTotalPrice)) + ")" : "(+" + PortfolioUtil.getFormattedEuroPrice(price: diffPrice) + ")")
+            let strDiffPrice = (diffPrice < 0 ? "(" + PortfolioUtil.getFormattedEuroPrice(price: (latestTotalPrice - oldestTotalPrice)) + ")" : "(+" + PortfolioUtil.getFormattedEuroPrice(price: diffPrice) + ")")
             let priceString = PortfolioUtil.getFormattedEuroPrice(price: latestTotalPrice)
             var percentString = String(format: "%.2f", diffPercent)
             percentString = (diffPercent < 0 ? "(" + percentString + "%)"  : "(+" + percentString + "%)")

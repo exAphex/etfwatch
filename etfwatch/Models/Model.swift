@@ -45,3 +45,7 @@ struct ResultStruct: Codable {
     var latestPrice: Float64
     var oldestPrice: Float64
 }
+
+struct UpdateModel: Codable {
+    let req_version: String
+}
