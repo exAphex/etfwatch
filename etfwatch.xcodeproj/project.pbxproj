@@ -23,6 +23,7 @@
 		05D1628126285F53004832E2 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1628026285F53004832E2 /* PreferencesWindowController.swift */; };
 		05D1628C262861D8004832E2 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D1628B262861D8004832E2 /* PreferencesViewController.swift */; };
 		05D162B7262DA7C3004832E2 /* UpdateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D162B6262DA7C3004832E2 /* UpdateUtil.swift */; };
+		05D162BB26358D48004832E2 /* CustomPortfolioTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D162BA26358D48004832E2 /* CustomPortfolioTableCell.swift */; };
 		7BE1EAF32ED9B83C62C7EAA1 /* Pods_etfwatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		05D1628026285F53004832E2 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		05D1628B262861D8004832E2 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		05D162B6262DA7C3004832E2 /* UpdateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUtil.swift; sourceTree = "<group>"; };
+		05D162BA26358D48004832E2 /* CustomPortfolioTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPortfolioTableCell.swift; sourceTree = "<group>"; };
 		119A68C1D420B14E851225E8 /* Pods_etfwatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_etfwatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD6A819AEA5090C8C2E0F13 /* Pods-etfwatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.release.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.release.xcconfig"; sourceTree = "<group>"; };
 		3E7A326D2D5841141CCCCA72 /* Pods-etfwatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-etfwatch.debug.xcconfig"; path = "Target Support Files/Pods-etfwatch/Pods-etfwatch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				05D16258261A9DE0004832E2 /* PortfolioViewController.swift */,
+				05D162BA26358D48004832E2 /* CustomPortfolioTableCell.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				05D1625D261CC3CD004832E2 /* PortfolioElementController.swift in Sources */,
 				05A8A4552614D4A900CDC007 /* AppDelegate.swift in Sources */,
 				05D162B7262DA7C3004832E2 /* UpdateUtil.swift in Sources */,
+				05D162BB26358D48004832E2 /* CustomPortfolioTableCell.swift in Sources */,
 				05D162532619FFCD004832E2 /* HTTPUtil.swift in Sources */,
 				05D16260261E0008004832E2 /* PortfolioElementViewController.swift in Sources */,
 				05D1626A2623600B004832E2 /* Error.swift in Sources */,
