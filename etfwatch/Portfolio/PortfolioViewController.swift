@@ -201,19 +201,31 @@ extension PortfolioViewController: NSTableViewDataSource {
 }
 
 extension PortfolioViewController: NSTableViewDelegate {
+    
+    func setCellAlignment(userCell : CustomPortfolioTableCell) {
+        userCell.lblTotal.alignment = .right
+        userCell.lblTotalGain.alignment = .right
+        userCell.lblAmount.alignment = .right
+        userCell.lblPricePerUnit.alignment = .right
+        userCell.lblPercentGain.alignment = .right
+    }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let currentPortfolioElement = portfolio[row]
         guard let userCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "userCell"), owner: self) as? CustomPortfolioTableCell else { return nil }
                 
         userCell.lblTitle.stringValue = currentPortfolioElement.name ?? "-"
         
+        setCellAlignment(userCell: userCell)
+        
         if (currentPortfolioElement.instrumentId == -1) {
             userCell.lblAmount.stringValue = ""
             userCell.lblPricePerUnit.stringValue = ""
-            userCell.lblTotal.frame = CGRect(x: 496, y: 10, width: 115 , height: 17)
+            userCell.lblTotal.frame = CGRect(x: 496, y: 11, width: 115 , height: 16)
         } else {
             userCell.lblAmount.stringValue = String(currentPortfolioElement.count)
             userCell.lblPricePerUnit.stringValue = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice)
+            userCell.lblTotal.frame = CGRect(x: 496, y: 19, width: 115 , height: 16)
         }
         
         
