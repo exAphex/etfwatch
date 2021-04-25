@@ -214,6 +214,13 @@ extension PortfolioViewController: NSTableViewDelegate {
         let currentPortfolioElement = portfolio[row]
         guard let userCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "userCell"), owner: self) as? CustomPortfolioTableCell else { return nil }
                 
+        let fontSize = NSFont.systemFontSize
+        if (currentPortfolioElement.instrumentId == -1) {
+            userCell.lblTitle.font = NSFont.boldSystemFont(ofSize: fontSize)
+        } else {
+            userCell.lblTitle.font = NSFont.systemFont(ofSize: fontSize)
+        }
+        
         userCell.lblTitle.stringValue = currentPortfolioElement.name ?? "-"
         
         setCellAlignment(userCell: userCell)
