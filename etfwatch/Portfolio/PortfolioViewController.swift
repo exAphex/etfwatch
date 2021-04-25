@@ -86,12 +86,12 @@ class PortfolioViewController: NSViewController {
     }
     
     func resetSize() {
-        self.preferredContentSize = NSSize(width: 666, height: 285)
+        self.preferredContentSize = NSSize(width: 666, height: 296)
         //self.view.frame = CGRect(x: 0, y: 0, width: 666, height: 285)
     }
     
     func showGraph() {
-        self.preferredContentSize = NSSize(width: 666, height: 448)
+        self.preferredContentSize = NSSize(width: 666, height: 457)
         //self.view.frame = CGRect(x: 0, y: 0, width: 666, height: 448)
     }
     
@@ -203,6 +203,50 @@ extension PortfolioViewController: NSTableViewDataSource {
 extension PortfolioViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let currentPortfolioElement = portfolio[row]
+        guard let userCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "userCell"), owner: self) as? CustomPortfolioTableCell else { return nil }
+                
+        userCell.lblTitle.stringValue = currentPortfolioElement.name ?? "-"
+        
+        if (currentPortfolioElement.instrumentId == -1) {
+            userCell.lblAmount.stringValue = ""
+            userCell.lblPricePerUnit.stringValue = ""
+            userCell.lblTotal.frame = CGRect(x: 496, y: 10, width: 115 , height: 17)
+        } else {
+            userCell.lblAmount.stringValue = String(currentPortfolioElement.count)
+            userCell.lblPricePerUnit.stringValue = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice)
+        }
+        
+        
+        let priceString = (currentPortfolioElement.instrumentId == -1 ? PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice) : PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice * currentPortfolioElement.count))
+        userCell.lblTotal.stringValue = priceString
+        
+        let diffPercent =  (1 - (currentPortfolioElement.resultData.oldestPrice / currentPortfolioElement.resultData.latestPrice)) * 100
+        var percentString = String(format: "%.2f", diffPercent)
+        percentString = (diffPercent < 0 ? "" + percentString + "%"  : "+" + percentString + "%")
+        userCell.lblPercentGain.stringValue = percentString
+        
+        var diffPrice = currentPortfolioElement.resultData.latestPrice - currentPortfolioElement.resultData.oldestPrice
+        if (currentPortfolioElement.instrumentId == -1) {
+            diffPrice = 1 * diffPrice
+        } else {
+            diffPrice = currentPortfolioElement.count * diffPrice
+        }
+        userCell.lblTotalGain.stringValue = PortfolioUtil.getFormattedEuroPrice(price: diffPrice)
+        
+        
+        //userCell.roleLabel.stringValue = users[row]["role"] ?? "unknown role"
+        if (currentPortfolioElement.resultData.latestPrice >= currentPortfolioElement.resultData.oldestPrice) {
+            userCell.lblPercentGain.textColor = NSColor.systemGreen
+            userCell.lblTotalGain.textColor = NSColor.systemGreen
+        } else {
+            userCell.lblPercentGain.textColor = NSColor.systemRed
+            userCell.lblTotalGain.textColor = NSColor.systemRed
+        }
+        
+        return userCell
+        
+        /*
+        let currentPortfolioElement = portfolio[row]
         guard let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as? NSTableCellView else { return nil }
         if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "nameColumn") {
             let fontSize = NSFont.systemFontSize
@@ -245,6 +289,6 @@ extension PortfolioViewController: NSTableViewDelegate {
                 cell.textField?.stringValue = priceString + " " + percentString
             }
         }
-        return cell
+        return cell*/
     }
 }

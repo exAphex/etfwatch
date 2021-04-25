@@ -9,6 +9,14 @@ import Cocoa
 
 class CustomPortfolioTableCell: NSTableCellView {
 
+    @IBOutlet weak var lblTitle: NSTextField!
+    @IBOutlet weak var lblAmount: NSTextField!
+    @IBOutlet weak var lblTotalGain: NSTextField!
+    @IBOutlet weak var lblPercentGain: NSTextField!
+    @IBOutlet weak var lblTotal: NSTextField!
+    @IBOutlet weak var lblPricePerUnit: NSTextField!
+    
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
