@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -939,7 +939,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GYc-Pf-Uid">
-                                    <rect key="frame" x="1" y="204" width="624" height="15"/>
+                                    <rect key="frame" x="1" y="221" width="624" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Xup-xK-dLf">
@@ -1006,9 +1006,30 @@
                                     <action selector="onShowPreferences:" target="dtl-cE-KM0" id="s5l-08-ipS"/>
                                 </connections>
                             </button>
+                            <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XEV-dD-iuI">
+                                <rect key="frame" x="115" y="170" width="23" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" pullsDown="YES" arrowPosition="noArrow" id="igH-Oy-LCd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="6tW-as-DJ7">
+                                        <items>
+                                            <menuItem state="on" image="NSAddTemplate" hidden="YES" id="I7j-9e-ukz"/>
+                                            <menuItem title="Security (Lang&amp;Schwarz)" id="Aea-QR-mIU">
+                                                <connections>
+                                                    <action selector="onAddLuSSecurity:" target="dtl-cE-KM0" id="zn1-Op-8zM"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="JnT-zb-8eZ"/>
+                                            <menuItem title="Bondora G&amp;G Account" id="ENK-8J-EZS"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="btnAddElement" destination="XEV-dD-iuI" id="cVg-x9-TUn"/>
                         <outlet property="btnPreferences" destination="X0g-oK-DvR" id="dt1-4M-JOk"/>
                         <outlet property="chtChart" destination="4uO-2y-P43" id="xjy-k3-fyc"/>
                         <outlet property="tableView" destination="GLE-Md-455" id="4ZM-oD-RKv"/>

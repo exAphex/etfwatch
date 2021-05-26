@@ -24,6 +24,14 @@ class Preferences {
         userDefaults.set(value, forKey: key)
     }
     
+    func getStringValue(key : String) -> String? {
+        return userDefaults.string(forKey: key)
+    }
+    
+    func setStringValue(key: String, value : String) {
+        userDefaults.set(value, forKey: key)
+    }
+    
     func loadPortfolioFromPreferences() -> [PortfolioElement] {
         if let data = userDefaults.object(forKey: "portfolioElements") as? Data {
             do {

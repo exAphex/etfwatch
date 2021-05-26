@@ -18,6 +18,7 @@ class PortfolioViewController: NSViewController {
     var preferencesWindowController: PreferencesWindowController!
     @IBOutlet weak var chtChart: LineChartView!
     @IBOutlet weak var btnPreferences: NSButton!
+    @IBOutlet weak var btnAddElement: NSPopUpButton!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -59,6 +60,10 @@ class PortfolioViewController: NSViewController {
     
     @IBAction func onShowPreferences(_ sender: Any) {
         preferencesWindowController.showWindow(self)
+    }
+  
+    @IBAction func onAddLuSSecurity(_ sender: Any) {
+        portfolioElementController.showWindow(self)
     }
     
     @IBAction func onEditPortfolioElement(_ sender: Any) {
