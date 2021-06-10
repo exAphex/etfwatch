@@ -4,6 +4,11 @@ etfwatch is a small portfolio ticker app for MacOS with live data feed from L&S 
 # Overview 
 ![overview](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/overview.png)
 
+# Features
+* Live exchange data from Lang und Schwarz
+* Intraday data retrieval
+* (NEW) Bondora G&G tracking
+
 # Setup
 ## Installation
 1. Download latest release [here](https://github.com/exAphex/etfwatch/releases).
@@ -22,28 +27,3 @@ Follow these steps:
 3. Click on "Open"  
 ![openunisgned](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/openunsigned.png)
 
-## Add assets
-1. Left-Click on the ETFwatch app in your status bar.
-2. Click on the "Add" Button
-3. You will see the following window:  
-![Add asset](https://raw.githubusercontent.com/exAphex/etfwatch/main/assets/addasset.png)
-4. Type in the ISIN of your asset and click on the "Search" button
-5. If the asset is found, ETFwatch will auto-complete the name and price.
-6. Type in the amount and save.
-
-## Modify asset
-1. Select the asset you want to modify.
-2. Click on the "Modify" button.
-3. You can change the name and amount of your asset.
-4. Save.
-
-## Delete asset
-1. Select the asset you want to modify.
-2. Click on the "Delete" button.
-
-# Usage
-## Show graph
-Double-click your asset to see the daily price changes on the graph.
-
-## Preferences
-You can customize the statusbar with the preferences.
