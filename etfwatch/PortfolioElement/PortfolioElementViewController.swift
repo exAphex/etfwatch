@@ -51,9 +51,9 @@ class PortfolioElementViewController: NSViewController {
         
     }
     
-    func modifyElement(elem : PortfolioElement) {
+    func modifyElement(elem : PortfolioModelElement) {
         self.isEdit = true
-        self.currentInstrumentId = elem.instrumentId
+        self.currentInstrumentId = elem.securityElem!.instrumentId
         
         self.txtISIN.isEnabled = false
         self.txtISIN.stringValue = ""
@@ -62,7 +62,7 @@ class PortfolioElementViewController: NSViewController {
         self.searchButton.isEnabled = false
         
         self.txtPrice.isEnabled = false
-        self.txtPrice.stringValue = PortfolioUtil.getFormattedEuroPrice(price: elem.resultData.latestPrice)
+        self.txtPrice.stringValue = PortfolioUtil.getFormattedEuroPrice(price: elem.priceIndividual)
         
         self.txtAmount.isEnabled = true
         self.txtAmount.stringValue = String(elem.count)

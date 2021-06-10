@@ -10,6 +10,7 @@ import SwiftUI
 import UserNotifications
 
 let VERSION = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+let bondoraUpdate = Date()
 
 protocol MainAppDelegate {
     func preferencesDidUpdate()
@@ -22,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     var portfolioViewController: PortfolioViewController!
     var statusBarItem: NSStatusItem!
     var portfolio: [PortfolioElement] = []
+    var bondoraToken : String?
     var timer: Timer? = nil
     var preferences = Preferences()
 
@@ -33,6 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         
         let portfolio = preferences.loadPortfolioFromPreferences()
         setPortfolio(portfolioElements: portfolio)
+        
+        let bondoraToken = preferences.getStringValue(key: "bondoraToken")
+        setBondoraToken(token : bondoraToken)
+        
         createTimer()
         
         checkUpdate()
@@ -89,13 +95,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         self.portfolio = portfolioElements
     }
     
+    func setBondoraToken(token : String?) {
+        self.bondoraToken = token
+    }
+    
     func createTimer() {
         if (timer != nil) {
             timer!.invalidate()
             timer = nil
         }
 
-        let refreshRateInt = 60
+        let refreshRateInt = 360
         
         getPortfolioData()
 
@@ -105,18 +115,34 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     }
     
     func getPortfolioData() {
-        let portfolioData = PortfolioUtil.injectTotalValue(portfolio: PortfolioUtil.getPortfolioData(portfolio: self.portfolio))
-        self.setTitle(portfolioData: portfolioData)
-        self.portfolioViewController.setModel(portfolio: portfolioData)
+        var portfolioModel : [PortfolioModelElement] = []
+        if ((self.bondoraToken != nil) && (!self.bondoraToken!.isEmpty)) {
+            let bondoraData = BondoraUtil.getBondoraData(token : self.bondoraToken!)
+            let bondoraModel = BondoraUtil.getPortfolioModel(ggAccounts: bondoraData)
+            portfolioModel.append(contentsOf: bondoraModel)
+        }
+        
+        let portfolioData = PortfolioUtil.getPortfolioData(portfolio: self.portfolio)
+        portfolioModel.append(contentsOf: portfolioData)
+        
+        let sortedPortfolioModel = portfolioModel.sorted {
+            ($0.priceTotal) > ($1.priceTotal)
+        }
+        
+        let totalData = PortfolioUtil.injectTotalValue(portfolio: sortedPortfolioModel)
+        self.setTitle(portfolioData: totalData)
+        self.portfolioViewController.setModel(portfolio: totalData)
     }
     
-    func setTitle(portfolioData : [PortfolioElement]) {
+    func setTitle(portfolioData : [PortfolioModelElement]) {
         if let button = self.statusBarItem.button {
             var latestTotalPrice : Float64 = 0
             var oldestTotalPrice : Float64 = 0
             for p in portfolioData {
-                latestTotalPrice += p.resultData.latestPrice * p.count
-                oldestTotalPrice += p.resultData.oldestPrice * p.count
+                if (p.type != PortfolioModelElementType.TOTAL) {
+                    latestTotalPrice += p.priceTotal
+                    oldestTotalPrice += p.priceTotalOld
+                }
             }
             let diffPercent : Float64 = ((latestTotalPrice > 0) ? ((1 - (oldestTotalPrice / latestTotalPrice)) * 100) : 0)
             let diffPrice = (latestTotalPrice - oldestTotalPrice)
@@ -143,6 +169,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     func preferencesDidUpdate() {
         let portfolio = preferences.loadPortfolioFromPreferences()
         setPortfolio(portfolioElements: portfolio)
+        
+        let bondoraToken = preferences.getStringValue(key: "bondoraToken")
+        setBondoraToken(token : bondoraToken)
+        
         createTimer()
     }
     

@@ -9,8 +9,8 @@ import Foundation
 
 class PortfolioUtil {
     
-    static func getPortfolioData(portfolio: [PortfolioElement]) -> [PortfolioElement] {
-        var resultArr : [PortfolioElement] = []
+    static func getPortfolioData(portfolio: [PortfolioElement]) -> [PortfolioModelElement] {
+        var resultArr : [PortfolioModelElement] = []
         for p in portfolio {
             do {
                 let historicData = try HTTPUtil.getRequest(strURL: "https://www.ls-tc.de/_rpc/json/instrument/chart/dataForInstrument?container=chart1&instrumentId=" + String(p.instrumentId) + "&marketId=1&quotetype=mid&series=intraday&type=&localeId=2")
@@ -21,23 +21,31 @@ class PortfolioUtil {
                     if (sortedTimeline!.count > 0) {
                         let elemLowPrice = sortedTimeline![0][1]
                         let elemPrice = sortedTimeline![sortedTimeline!.count - 1][1]
-                        let tempElem = PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: elemPrice, oldestPrice: elemLowPrice), intraDay: sortedTimeline!)
+                        let tempElem = getPortfolioModelElement(portfolioelem : PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: elemPrice, oldestPrice: elemLowPrice), intraDay: sortedTimeline!))
                         resultArr.append(tempElem)
                     } else {
-                        let tempElem = PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice))
+                        let tempElem = getPortfolioModelElement(portfolioelem :PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice)))
                         resultArr.append(tempElem)
                     }
                 } else {
-                    resultArr.append(PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice)))
+                    resultArr.append(getPortfolioModelElement(portfolioelem :PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice))))
                 }
             } catch {
-                resultArr.append(PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice)))
+                resultArr.append(getPortfolioModelElement(portfolioelem :PortfolioElement(name: p.name, instrumentId: p.instrumentId, count: p.count, resultData: ResultStruct(latestPrice: p.resultData.latestPrice, oldestPrice: p.resultData.oldestPrice))))
             }
         }
-        let sortedResultArr = resultArr.sorted {
-            ($0.count * $0.resultData.latestPrice) > ($1.count * $1.resultData.latestPrice)
-        }
-        return sortedResultArr
+        
+        return resultArr
+    }
+    
+    static func getPortfolioModelElement(portfolioelem : PortfolioElement) -> PortfolioModelElement {
+        
+        let total = portfolioelem.resultData.latestPrice * portfolioelem.count
+        let totalOld = portfolioelem.resultData.oldestPrice * portfolioelem.count
+        let diffPrice = total - totalOld
+        let diffPercent = (1 - (totalOld / total)) * 100
+        let retElem = PortfolioModelElement(name: portfolioelem.name, count: portfolioelem.count, diffPercentage: diffPercent, diff: diffPrice, priceIndividual: portfolioelem.resultData.latestPrice, priceIndividualOld:portfolioelem.resultData.oldestPrice, priceTotal: total, priceTotalOld: totalOld, intraDay: portfolioelem.intraDay, type: PortfolioModelElementType.LUS, securityElem: portfolioelem)
+        return retElem
     }
     
     static func getFormattedEuroPrice(price : Float64) -> String {
@@ -56,15 +64,17 @@ class PortfolioUtil {
         return dateFormatter.string(from: Date(timeIntervalSince1970: newValue))
     }
     
-    static func injectTotalValue(portfolio : [PortfolioElement]) -> [PortfolioElement] {
+    static func injectTotalValue(portfolio : [PortfolioModelElement]) -> [PortfolioModelElement] {
         var totalValue : Float64 = 0
         var totalOldValue : Float64 = 0
-        var retPortfolio : [PortfolioElement] = portfolio
+        var retPortfolio : [PortfolioModelElement] = portfolio
         for p in retPortfolio {
-            totalValue += p.resultData.latestPrice * p.count
-            totalOldValue += p.resultData.oldestPrice * p.count
+            totalValue += p.priceTotal
+            totalOldValue += p.priceTotalOld
         }
-        retPortfolio.append(PortfolioElement(name: "Total", instrumentId: -1, count: 0, resultData: ResultStruct(latestPrice: totalValue, oldestPrice: totalOldValue)))
+        let diffPercent = (1 - (totalOldValue / totalValue)) * 100
+        let diffPrice = totalValue - totalOldValue
+        retPortfolio.append(PortfolioModelElement(name: "Total", count: 0, diffPercentage: diffPercent, diff: diffPrice, priceIndividual: 0, priceIndividualOld: 0, priceTotal: totalValue, priceTotalOld: totalOldValue, type: PortfolioModelElementType.TOTAL))
         return retPortfolio
     }
 }

@@ -10,12 +10,13 @@ import Charts
 
 class PortfolioViewController: NSViewController {
     @IBOutlet weak var tableView: NSTableView!
-    var portfolio: [PortfolioElement] = []
+    var portfolio: [PortfolioModelElement] = []
     var popOver : NSPopover!
     var delegate : MainAppDelegate?
     var preferences = Preferences()
     var portfolioElementController: PortfolioElementController!
     var preferencesWindowController: PreferencesWindowController!
+    var bondoraWindowController : BondoraWindowController!
     @IBOutlet weak var chtChart: LineChartView!
     @IBOutlet weak var btnPreferences: NSButton!
     @IBOutlet weak var btnAddElement: NSPopUpButton!
@@ -31,8 +32,21 @@ class PortfolioViewController: NSViewController {
         
         portfolioElementController = createPortfolioElementWindow()
         preferencesWindowController = createPreferencesWindow()
+        bondoraWindowController = createBondoraWindow()
         
         resetSize()
+    }
+    
+    func createBondoraWindow() -> BondoraWindowController {
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        let identifier = NSStoryboard.SceneIdentifier("BondoraViewController")
+        guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? BondoraWindowController else {
+          fatalError("Why cant i find BondoraViewController? - Check Main.storyboard")
+        }
+        let controller = viewcontroller.window!.contentViewController as! BondoraViewController
+        controller.delegate = delegate
+        controller.window = viewcontroller
+        return viewcontroller
     }
     
     func createPortfolioElementWindow() -> PortfolioElementController {
@@ -66,6 +80,10 @@ class PortfolioViewController: NSViewController {
         portfolioElementController.showWindow(self)
     }
     
+    @IBAction func onAddBondora(_ sender: Any) {
+        bondoraWindowController.showWindow(self)
+    }
+    
     @IBAction func onEditPortfolioElement(_ sender: Any) {
         let selectedRow = tableView.selectedRow
         if (selectedRow < 0) {
@@ -73,21 +91,26 @@ class PortfolioViewController: NSViewController {
         }
         
         let pElement = portfolio[tableView.selectedRow]
-        if (pElement.instrumentId < 0) {
-            return
+        if (pElement.type == PortfolioModelElementType.BONDORA) {
+            bondoraWindowController.showWindow(self)
+        } else if (pElement.type == PortfolioModelElementType.LUS) {
+            portfolioElementController.modifyElement(sender: sender, elem: pElement)
         }
-        
-        portfolioElementController.modifyElement(sender: sender, elem: pElement)
     }
     
     @IBAction func onShowGraph(_ sender: Any) {
-        let pElement = portfolio[tableView.clickedRow]
-        if (pElement.instrumentId < 0) {
+        let row = tableView.clickedRow
+        if (row < 0) {
             return
         }
         
-        setupGraph(portfolioElement: pElement)
-        showGraph()
+        let pElement = portfolio[row]
+        if (pElement.type == PortfolioModelElementType.LUS) {
+            setupGraph(portfolioElement: pElement)
+            showGraph()
+        } else {
+            resetSize();
+        }
     }
     
     func resetSize() {
@@ -100,7 +123,7 @@ class PortfolioViewController: NSViewController {
         //self.view.frame = CGRect(x: 0, y: 0, width: 666, height: 448)
     }
     
-    func setupGraph(portfolioElement: PortfolioElement) {
+    func setupGraph(portfolioElement: PortfolioModelElement) {
         chtChart.legend.enabled = false
         chtChart.drawBordersEnabled = false
         chtChart.borderColor = NSColor.systemPink
@@ -140,7 +163,7 @@ class PortfolioViewController: NSViewController {
         chtChart.data = data
     }
     
-    func setModel(portfolio: [PortfolioElement]) {
+    func setModel(portfolio: [PortfolioModelElement]) {
         self.portfolio = portfolio
 
         if (tableView != nil) {
@@ -159,16 +182,17 @@ class PortfolioViewController: NSViewController {
         }
         
         let pElement = portfolio[tableView.selectedRow]
-        if (pElement.instrumentId < 0) {
-            return
+        if (pElement.type == PortfolioModelElementType.LUS) {
+            do {
+                try preferences.deletePortfolioElementFromPreferences(elem: pElement.securityElem!)
+                delegate?.preferencesDidUpdate()
+            } catch {
+                print("error")
+            }
+        } else {
+                // TODO
         }
         
-        do {
-            try preferences.deletePortfolioElementFromPreferences(elem: pElement)
-            delegate?.preferencesDidUpdate()
-        } catch {
-            print("error")
-        }
     }
     
     @IBAction func onQuitApp(_ sender: Any) {
@@ -220,7 +244,7 @@ extension PortfolioViewController: NSTableViewDelegate {
         guard let userCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "userCell"), owner: self) as? CustomPortfolioTableCell else { return nil }
                 
         let fontSize = NSFont.systemFontSize
-        if (currentPortfolioElement.instrumentId == -1) {
+        if (currentPortfolioElement.type == PortfolioModelElementType.TOTAL) {
             userCell.lblTitle.font = NSFont.boldSystemFont(ofSize: fontSize)
         } else {
             userCell.lblTitle.font = NSFont.systemFont(ofSize: fontSize)
@@ -230,36 +254,29 @@ extension PortfolioViewController: NSTableViewDelegate {
         
         setCellAlignment(userCell: userCell)
         
-        if (currentPortfolioElement.instrumentId == -1) {
+        if (currentPortfolioElement.type == PortfolioModelElementType.TOTAL) {
             userCell.lblAmount.stringValue = ""
             userCell.lblPricePerUnit.stringValue = ""
             userCell.lblTotal.frame = CGRect(x: 496, y: 11, width: 115 , height: 16)
         } else {
             userCell.lblAmount.stringValue = String(currentPortfolioElement.count)
-            userCell.lblPricePerUnit.stringValue = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice)
+            userCell.lblPricePerUnit.stringValue = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.priceIndividual)
             userCell.lblTotal.frame = CGRect(x: 496, y: 19, width: 115 , height: 16)
         }
         
         
-        let priceString = (currentPortfolioElement.instrumentId == -1 ? PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice) : PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.resultData.latestPrice * currentPortfolioElement.count))
+        let priceString = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.priceTotal)
         userCell.lblTotal.stringValue = priceString
         
-        let diffPercent =  (1 - (currentPortfolioElement.resultData.oldestPrice / currentPortfolioElement.resultData.latestPrice)) * 100
-        var percentString = String(format: "%.2f", diffPercent)
-        percentString = (diffPercent < 0 ? "" + percentString + "%"  : "+" + percentString + "%")
+        var percentString = String(format: "%.2f", currentPortfolioElement.diffPercentage)
+        percentString = (currentPortfolioElement.diffPercentage < 0 ? "" + percentString + "%"  : "+" + percentString + "%")
         userCell.lblPercentGain.stringValue = percentString
         
-        var diffPrice = currentPortfolioElement.resultData.latestPrice - currentPortfolioElement.resultData.oldestPrice
-        if (currentPortfolioElement.instrumentId == -1) {
-            diffPrice = 1 * diffPrice
-        } else {
-            diffPrice = currentPortfolioElement.count * diffPrice
-        }
-        userCell.lblTotalGain.stringValue = PortfolioUtil.getFormattedEuroPrice(price: diffPrice)
+        userCell.lblTotalGain.stringValue = PortfolioUtil.getFormattedEuroPrice(price: currentPortfolioElement.diff)
         
         
         //userCell.roleLabel.stringValue = users[row]["role"] ?? "unknown role"
-        if (currentPortfolioElement.resultData.latestPrice >= currentPortfolioElement.resultData.oldestPrice) {
+        if (currentPortfolioElement.priceTotal >= currentPortfolioElement.priceTotalOld) {
             userCell.lblPercentGain.textColor = NSColor.systemGreen
             userCell.lblTotalGain.textColor = NSColor.systemGreen
         } else {
