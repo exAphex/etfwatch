@@ -886,6 +886,17 @@
                                     <action selector="onSaveBondora:" target="KGU-W9-qkq" id="vzv-4h-kj1"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eu0-Qa-euG">
+                                <rect key="frame" x="233" y="13" width="47" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarGetInfoTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rnl-OO-dR4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onOpenHowTo:" target="KGU-W9-qkq" id="8uG-ed-Zes"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1195,6 +1206,7 @@
     <resources>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>
+        <image name="NSTouchBarGetInfoTemplate" width="15" height="15"/>
         <image name="NSTouchBarRemoveTemplate" width="14" height="4"/>
         <image name="NSTouchBarSearchTemplate" width="15" height="15"/>
     </resources>

@@ -28,4 +28,9 @@ class BondoraViewController: NSViewController {
         delegate?.preferencesDidUpdate()
         self.window?.close()
     }
+    
+    @IBAction func onOpenHowTo(_ sender: Any) {
+        let url = URL(string: "https://github.com/exAphex/etfwatch/wiki/How-to-generate-Bondora-token")!
+        NSWorkspace.shared.open(url)
+    }
 }
